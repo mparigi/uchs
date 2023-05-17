@@ -1,16 +1,8 @@
 import Data.Map qualified as Map
 import Text.Parsec
-import Text.Parsec.Prim (many)
 import Text.Parsec.String (Parser)
-import Text.Parsec.Token qualified as P
 
-main :: IO ()
-main = do
-  input <- getContents :: IO String
-  let result = parse lexer "(unknown)" input
-  case result of
-    Left err -> print err
-    Right tokens -> print tokens
+main = interact $ (++ "\n") . show . parse lexer "(unknown)"
 
 data Token
   = KeywordToken Keyword
